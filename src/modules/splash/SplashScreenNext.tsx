@@ -7,12 +7,10 @@ import icons from '../../assets/icons';
 const SplashScreenNext = ({
   navigation,
 }: PublicStackScreenProps<'splash_next'>) => {
-  const inset = useSafeAreaInsets();
-
   useEffect(() => {
     setTimeout(() => {
       navigation.navigate('home');
-    }, 300);
+    }, 1000);
   }, []);
 
   return (

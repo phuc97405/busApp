@@ -26,6 +26,7 @@ const HomeScreen = () => {
   const [count, setCount] = useState(0);
   const [busName, setBusName] = useState('');
   const [indexCheck, setIndexCheck] = useState<null | number>(null);
+  const [poor, setPoor] = useState(0);
   const peopleView = () => (
     <Pressable
       style={
@@ -87,7 +88,7 @@ const HomeScreen = () => {
       }>
       <Text style={styles.labelPlaceholder}>선택</Text>
       <Image
-        source={icons.ic_detail}
+        source={indexCheck === 2 ? icons.ic_detail_active : icons.ic_detail}
         resizeMode="contain"
         style={styles.detail}
       />
@@ -95,18 +96,24 @@ const HomeScreen = () => {
   );
 
   const poorView = () => (
-    <Pressable
-      onPress={() => setIndexCheck(3)}
-      style={
-        indexCheck === 3 ? styles.containerFormEditAc : styles.containerFormEdit
-      }>
-      <Text style={styles.labelValue}>예</Text>
-      <Image
-        source={icons.ic_down}
-        resizeMode="contain"
-        style={styles.ic_down}
-      />
-    </Pressable>
+    <>
+      <Pressable
+        onPress={() => setIndexCheck(3)}
+        style={
+          indexCheck === 3
+            ? styles.containerFormEditAc
+            : styles.containerFormEdit
+        }>
+        <Text style={styles.labelValue}>{`${
+          poor === 0 ? '예' : '아니요'
+        }`}</Text>
+        <Image
+          source={icons.ic_down}
+          resizeMode="contain"
+          style={styles.ic_down}
+        />
+      </Pressable>
+    </>
   );
 
   const paymentView = () => (
@@ -152,7 +159,7 @@ const HomeScreen = () => {
   };
 
   return (
-    <View style={[styles.container, {marginTop: insets.top || 6}]}>
+    <View style={[styles.container, {marginTop: insets.top || 0}]}>
       <View style={{flex: 1}}>
         <View style={styles.header}>
           <Image
@@ -182,7 +189,57 @@ const HomeScreen = () => {
               {item.type}
             </TouchableOpacity>
           ))}
+          {indexCheck === 3 && (
+            <View
+              style={{
+                position: 'absolute',
+                backgroundColor: 'white',
+                left: windowWidth / 3,
+                top: 275,
+                right: 24,
+                borderRadius: 10,
+                zIndex: 10,
+                borderWidth: 1,
+                overflow: 'hidden',
+              }}>
+              <TouchableOpacity
+                onPress={() => {
+                  setPoor(0);
+                  setIndexCheck(null);
+                }}
+                style={{
+                  height: 44,
+                  justifyContent: 'center',
+                  backgroundColor: poor === 0 ? '#F5F6F7' : '#fff',
+                }}>
+                <Text style={{textAlign: 'center', color: 'black'}}>예</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  setPoor(1);
+                  setIndexCheck(null);
+                }}
+                style={{
+                  height: 44,
+                  justifyContent: 'center',
+                  backgroundColor: poor === 1 ? '#F5F6F7' : '#fff',
+                }}>
+                <Text style={{textAlign: 'center', color: 'black'}}>
+                  아니요
+                </Text>
+              </TouchableOpacity>
+            </View>
+          )}
         </View>
+        {indexCheck === 4 && (
+          <View style={styles.container_img}>
+            <Image
+              source={icons.ic_nfid}
+              resizeMode="contain"
+              style={styles.ic_nfid}
+            />
+          </View>
+        )}
       </View>
       {indexCheck === 1 && (
         <View
@@ -334,6 +391,15 @@ const styles = StyleSheet.create({
     height: 1,
     width: '100%',
     backgroundColor: '#E1E2E5',
+  },
+  ic_nfid: {width: 152, height: 154},
+  container_img: {
+    flex: 1,
+    borderTopLeftRadius: 24,
+    borderTopRightRadius: 24,
+    backgroundColor: '#F5F6F7',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 
