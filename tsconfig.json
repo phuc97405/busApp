@@ -1,0 +1,13 @@
+{
+  "extends": "@tsconfig/react-native/tsconfig.json"
+  // "compilerOptions": {
+  //   "useDefineForClassFields": true,
+  //   "baseUrl": "./",
+  //   "paths": {"~*": ["src/*"]},
+  //   "strict": false,
+  //   "allowSyntheticDefaultImports": true,
+  //   "emitDecoratorMetadata": true,
+  //   "experimentalDecorators": true,
+  //   "skipLibCheck": true
+  // }
+}
