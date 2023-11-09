@@ -190,28 +190,18 @@ const HomeScreen = () => {
             </TouchableOpacity>
           ))}
           {indexCheck === 3 && (
-            <View
-              style={{
-                position: 'absolute',
-                backgroundColor: 'white',
-                left: windowWidth / 3,
-                top: 275,
-                right: 24,
-                borderRadius: 10,
-                zIndex: 10,
-                borderWidth: 1,
-                overflow: 'hidden',
-              }}>
+            <View style={styles.rootPosition}>
               <TouchableOpacity
                 onPress={() => {
                   setPoor(0);
                   setIndexCheck(null);
                 }}
-                style={{
-                  height: 44,
-                  justifyContent: 'center',
-                  backgroundColor: poor === 0 ? '#F5F6F7' : '#fff',
-                }}>
+                style={[
+                  styles.containerPosition,
+                  {
+                    backgroundColor: poor === 0 ? '#F5F6F7' : '#fff',
+                  },
+                ]}>
                 <Text style={{textAlign: 'center', color: 'black'}}>예</Text>
               </TouchableOpacity>
               <TouchableOpacity
@@ -219,11 +209,12 @@ const HomeScreen = () => {
                   setPoor(1);
                   setIndexCheck(null);
                 }}
-                style={{
-                  height: 44,
-                  justifyContent: 'center',
-                  backgroundColor: poor === 1 ? '#F5F6F7' : '#fff',
-                }}>
+                style={[
+                  styles.containerPosition,
+                  {
+                    backgroundColor: poor === 1 ? '#F5F6F7' : '#fff',
+                  },
+                ]}>
                 <Text style={{textAlign: 'center', color: 'black'}}>
                   아니요
                 </Text>
@@ -242,16 +233,7 @@ const HomeScreen = () => {
         )}
       </View>
       {indexCheck === 1 && (
-        <View
-          style={{
-            backgroundColor: 'rgba(0,0,0,0.5)',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            zIndex: 4,
-          }}>
+        <View style={styles.containerBus}>
           <Pressable
             onPress={() => {
               setIndexCheck(null);
@@ -400,6 +382,27 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5F6F7',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  containerBus: {
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 4,
+  },
+  containerPosition: {height: 44, justifyContent: 'center'},
+  rootPosition: {
+    position: 'absolute',
+    backgroundColor: 'white',
+    left: windowWidth / 3,
+    top: 275,
+    right: 24,
+    borderRadius: 10,
+    zIndex: 10,
+    borderWidth: 1,
+    overflow: 'hidden',
   },
 });
 
