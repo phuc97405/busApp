@@ -6,5 +6,8 @@ const icons = {
   ic_down: require('./home/ic_down.png'),
   ic_detail: require('./home/ic_detail.png'),
   ic_splash: require('./ic_splash.png'),
+
+  ic_expand: require('./station/expand.png'),
+  ic_back: require('./station/back.png'),
 };
 export default icons;

@@ -13,6 +13,7 @@ export type PublicStackParamList = {
   splash: undefined;
   splash_next: undefined;
   home: undefined;
+  stationScreen: undefined;
 };
 
 export type PublicStackScreenProps<T extends keyof PublicStackParamList> =
