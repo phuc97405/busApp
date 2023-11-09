@@ -9,7 +9,7 @@ const SplashScreen = ({navigation}: PublicStackScreenProps<'splash'>) => {
   useEffect(() => {
     setTimeout(() => {
       navigation.navigate('splash_next');
-    }, 300);
+    }, 1000);
   }, []);
 
   return (
