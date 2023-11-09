@@ -12,6 +12,7 @@ import icons from '../../assets/icons';
 import {TextInput} from 'react-native-gesture-handler';
 import PickerBus from '../../assets/components/pickerBus';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {PublicStackScreenProps} from '../../navigation/types';
 
 interface Option {
   title: string;
@@ -21,7 +22,7 @@ interface Option {
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}: PublicStackScreenProps<'home'>) => {
   const insets = useSafeAreaInsets();
   const [count, setCount] = useState(0);
   const [busName, setBusName] = useState('');
@@ -82,7 +83,10 @@ const HomeScreen = () => {
 
   const stationView = () => (
     <Pressable
-      onPress={() => setIndexCheck(2)}
+      onPress={() => {
+        setIndexCheck(2);
+        navigation.navigate('stationScreen');
+      }}
       style={
         indexCheck === 2 ? styles.containerFormEditAc : styles.containerFormEdit
       }>

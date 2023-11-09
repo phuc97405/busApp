@@ -92,7 +92,9 @@ const StationScreen = ({
 
   const isDisableButton = currentStation !== undefined ? false : true;
 
-  const onConfirmStation = () => {};
+  const onConfirmStation = () => {
+    navigation.goBack();
+  };
   const onPressBack = () => {
     if (navigation.canGoBack()) {
       navigation.goBack();
