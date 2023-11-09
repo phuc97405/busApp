@@ -6,6 +6,9 @@ const icons = {
   ic_down: require('./home/ic_down.png'),
   ic_detail: require('./home/ic_detail.png'),
   ic_splash: require('./ic_splash.png'),
+
+  ic_expand: require('./station/expand.png'),
+  ic_back: require('./station/back.png'),
   ic_detail_active: require('./home/ic_detail_ac.png'),
   ic_nfid: require('./home/ic_nfid.png'),
 };

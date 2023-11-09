@@ -17,6 +17,7 @@ import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
 import {PublicStack} from './src/navigation/types';
 import HomeScreen from './src/modules/home/HomeScreen';
 import SplashScreenNext from './src/modules/splash/SplashScreenNext';
+import StationScreen from './src/modules/station/StationScreen';
 
 const navTheme = {
   ...DefaultTheme,
@@ -43,6 +44,10 @@ function App(): JSX.Element {
               name="splash_next"
             />
             <PublicStack.Screen component={HomeScreen} name="home" />
+            <PublicStack.Screen
+              component={StationScreen}
+              name="stationScreen"
+            />
           </PublicStack.Navigator>
         </NavigationContainer>
       </GestureHandlerRootView>
