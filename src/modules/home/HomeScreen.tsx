@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Dimensions,
   Image,
@@ -314,21 +314,21 @@ const styles = StyleSheet.create({
     color: '#0A0A0A',
   },
   labelPlaceholder: {
-    width: windowWidth / 2,
+    // width: windowWidth / 2,
     fontSize: 14,
     fontWeight: '400',
     lineHeight: 20,
     color: '#A3A5AE',
   },
   labelValueBus: {
-    width: windowWidth / 2,
+    // width: windowWidth / 2,
     fontSize: 14,
     fontWeight: '400',
     lineHeight: 18,
     color: '#090A0B',
   },
   labelPlaceBus: {
-    width: windowWidth / 2,
+    // width: windowWidth / 2,
     fontSize: 14,
     fontWeight: '400',
     lineHeight: 18,
