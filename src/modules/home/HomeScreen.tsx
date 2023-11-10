@@ -22,7 +22,7 @@ const windowWidth = Dimensions.get('window').width;
 
 const HomeScreen = ({navigation}: PublicStackScreenProps<'home'>) => {
   const insets = useSafeAreaInsets();
-  const [count, setCount] = useState<number>(0);
+  const [count, setCount] = useState<number>(1);
   const [busName, setBusName] = useState<string>('');
   const [stationName, setStationName] = useState<string>('');
   const [indexCheck, setIndexCheck] = useState<null | number>(null);
@@ -73,21 +73,12 @@ const HomeScreen = ({navigation}: PublicStackScreenProps<'home'>) => {
   );
 
   const onSubmitStation = (stationName: string) => {
-    console.log('stationName', stationName);
     setStationName(stationName);
   };
 
   const stationView = () => (
     <>
-      <Text
-        style={[
-          styles.labelPlaceholder,
-          stationName
-            ? {
-                color: 'black',
-              }
-            : {},
-        ]}>
+      <Text style={[stationName ? styles.labelValueBus : styles.labelPlaceBus]}>
         {stationName ? stationName : '선택'}
       </Text>
       <Image

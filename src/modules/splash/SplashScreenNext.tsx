@@ -9,7 +9,7 @@ const SplashScreenNext = ({
 }: PublicStackScreenProps<'splash_next'>) => {
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate('home');
+      navigation.reset({index: 0, routes: [{name: 'home'}]});
     }, 1000);
   }, []);
 
