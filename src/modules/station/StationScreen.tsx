@@ -281,13 +281,13 @@ const styles = StyleSheet.create({
     borderRadius:
       (ARROW_CIRCLE_WIDTH + MARGIN_WIDTH * 2 + BORDER_WIDTH * 2) / 2,
     borderWidth: BORDER_WIDTH,
-    borderColor: '#FFBB6C',
+    borderColor: '#AFDF7B',
   },
   active_arrow: {
     tintColor: 'black',
     width: ARROW_CIRCLE_WIDTH,
     height: ARROW_CIRCLE_WIDTH,
-    backgroundColor: '#FFBB6C',
+    backgroundColor: '#AFDF7B',
     borderRadius: ARROW_CIRCLE_WIDTH / 2,
     margin: MARGIN_WIDTH,
   },
