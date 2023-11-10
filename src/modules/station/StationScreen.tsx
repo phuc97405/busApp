@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {
   Image,
   ScrollView,
@@ -29,13 +29,20 @@ const StationScreen = ({
   navigation,
   route,
 }: PublicStackScreenProps<'stationScreen'>) => {
-  const {busInfo, onSubmitStation} = route?.params || {
+  const {busInfo, onSubmitStation, stationName} = route?.params || {
     busInfo: '',
     onSubmitStation: () => {},
   };
+
   const [currentStation, setCurrentStation] = useState<number | undefined>(
     undefined,
   );
+
+  useEffect(() => {
+    const curIndex = datas.findIndex(data => data.name === stationName);
+    console.log('==sfd==', curIndex, stationName);
+    setCurrentStation(curIndex === -1 ? undefined : curIndex);
+  }, [busInfo]);
 
   const ActiveCheckbox = useCallback(() => {
     return (

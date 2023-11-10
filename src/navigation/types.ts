@@ -16,6 +16,7 @@ export type PublicStackParamList = {
   stationScreen: {
     busInfo: string;
     onSubmitStation: (stationName: string) => void;
+    stationName?: string;
   };
 };
 
