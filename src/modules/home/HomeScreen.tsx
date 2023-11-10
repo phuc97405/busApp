@@ -142,7 +142,10 @@ const HomeScreen = ({navigation}: PublicStackScreenProps<'home'>) => {
   };
 
   return (
-    <View style={[styles.container, {marginTop: insets.top || 0}]}>
+    <Pressable
+      disabled={indexCheck !== 3}
+      onPress={() => setIndexCheck(null)}
+      style={[styles.container, {marginTop: insets.top || 0}]}>
       <View style={{flex: 1}}>
         <View style={styles.header}>
           <Image
@@ -246,7 +249,7 @@ const HomeScreen = ({navigation}: PublicStackScreenProps<'home'>) => {
           </View>
         </View>
       )}
-    </View>
+    </Pressable>
   );
 };
 const styles = StyleSheet.create({
