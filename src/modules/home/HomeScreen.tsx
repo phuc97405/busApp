@@ -9,7 +9,6 @@ import {
   View,
 } from 'react-native';
 import icons from '../../assets/icons';
-import {TextInput} from 'react-native-gesture-handler';
 import PickerBus from '../../assets/components/pickerBus';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {PublicStackScreenProps} from '../../navigation/types';
@@ -20,19 +19,17 @@ interface Option {
   isEdit: boolean;
 }
 const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
 
 const HomeScreen = ({navigation}: PublicStackScreenProps<'home'>) => {
   const insets = useSafeAreaInsets();
-  const [count, setCount] = useState(0);
-  const [busName, setBusName] = useState('');
+  const [count, setCount] = useState<number>(0);
+  const [busName, setBusName] = useState<string>('');
+  const [stationName, setStationName] = useState<string>('');
   const [indexCheck, setIndexCheck] = useState<null | number>(null);
-  const [poor, setPoor] = useState(0);
+  const [poorTransportation, setPoorTransportation] = useState<boolean>(true);
+
   const peopleView = () => (
-    <Pressable
-      style={
-        indexCheck === 0 ? styles.containerFormEditAc : styles.containerFormEdit
-      }>
+    <>
       <TouchableOpacity
         onPress={() => {
           setIndexCheck(0);
@@ -56,19 +53,13 @@ const HomeScreen = ({navigation}: PublicStackScreenProps<'home'>) => {
           style={styles.ic_math}
         />
       </TouchableOpacity>
-    </Pressable>
+    </>
   );
 
   const busView = () => (
-    <Pressable
-      onPress={() => {
-        setIndexCheck(1);
-      }}
-      style={
-        indexCheck === 1 ? styles.containerFormEditAc : styles.containerFormEdit
-      }>
+    <>
       <Text
-        style={styles.labelPlaceholder}
+        style={busName ? styles.labelValueBus : styles.labelPlaceBus}
         numberOfLines={1}
         ellipsizeMode="tail">
         {`${busName ? busName : '버스 노선 번호를 선택해 주세요.'} `}
@@ -78,61 +69,44 @@ const HomeScreen = ({navigation}: PublicStackScreenProps<'home'>) => {
         resizeMode="contain"
         style={indexCheck === 1 ? styles.ic_top : styles.ic_down}
       />
-    </Pressable>
+    </>
   );
 
   const stationView = () => (
-    <Pressable
-      onPress={() => {
-        setIndexCheck(2);
-        navigation.navigate('stationScreen');
-      }}
-      style={
-        indexCheck === 2 ? styles.containerFormEditAc : styles.containerFormEdit
-      }>
-      <Text style={styles.labelPlaceholder}>선택</Text>
+    <>
+      <Text style={styles.labelPlaceholder}>
+        {stationName ? stationName : '선택'}
+      </Text>
       <Image
         source={indexCheck === 2 ? icons.ic_detail_active : icons.ic_detail}
         resizeMode="contain"
         style={styles.detail}
       />
-    </Pressable>
+    </>
   );
 
   const poorView = () => (
     <>
-      <Pressable
-        onPress={() => setIndexCheck(3)}
-        style={
-          indexCheck === 3
-            ? styles.containerFormEditAc
-            : styles.containerFormEdit
-        }>
-        <Text style={styles.labelValue}>{`${
-          poor === 0 ? '예' : '아니요'
-        }`}</Text>
-        <Image
-          source={icons.ic_down}
-          resizeMode="contain"
-          style={styles.ic_down}
-        />
-      </Pressable>
+      <Text style={styles.labelValue}>{`${
+        poorTransportation ? '예' : '아니요'
+      }`}</Text>
+      <Image
+        source={icons.ic_down}
+        resizeMode="contain"
+        style={styles.ic_down}
+      />
     </>
   );
 
   const paymentView = () => (
-    <Pressable
-      onPress={() => setIndexCheck(4)}
-      style={
-        indexCheck === 4 ? styles.containerFormEditAc : styles.containerFormEdit
-      }>
+    <>
       <Text style={styles.labelValue}>---</Text>
       <Image
         source={icons.ic_down}
         resizeMode="contain"
         style={styles.ic_down}
       />
-    </Pressable>
+    </>
   );
 
   const data: Option[] = [
@@ -182,7 +156,7 @@ const HomeScreen = ({navigation}: PublicStackScreenProps<'home'>) => {
             <Text style={styles.labelTopTab}>설정</Text>
           </View>
           <View style={styles.tab2}>
-            <Text style={styles.labelTopTabInActive}>설정</Text>
+            <Text style={styles.labelTopTabInActive}>노선</Text>
           </View>
         </View>
 
@@ -190,38 +164,49 @@ const HomeScreen = ({navigation}: PublicStackScreenProps<'home'>) => {
           {data.map((item: Option, index: number) => (
             <TouchableOpacity key={index} style={styles.containerItem}>
               <Text style={styles.labelOptions}>{item.title}</Text>
-              {item.type}
+              <Pressable
+                onPress={() => {
+                  setIndexCheck(index);
+                  index === 2 &&
+                    navigation.navigate('stationScreen', {busName});
+                }}
+                style={[
+                  indexCheck === index
+                    ? styles.containerFormEditAc
+                    : styles.containerFormEdit,
+                  {paddingHorizontal: index !== 0 ? 10 : 6},
+                ]}>
+                {item.type}
+              </Pressable>
             </TouchableOpacity>
           ))}
           {indexCheck === 3 && (
             <View style={styles.rootPosition}>
               <TouchableOpacity
                 onPress={() => {
-                  setPoor(0);
+                  setPoorTransportation(true);
                   setIndexCheck(null);
                 }}
                 style={[
                   styles.containerPosition,
                   {
-                    backgroundColor: poor === 0 ? '#F5F6F7' : '#fff',
+                    backgroundColor: poorTransportation ? '#F5F6F7' : '#fff',
                   },
                 ]}>
-                <Text style={{textAlign: 'center', color: 'black'}}>예</Text>
+                <Text style={styles.labelDropdown}>예</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => {
-                  setPoor(1);
+                  setPoorTransportation(false);
                   setIndexCheck(null);
                 }}
                 style={[
                   styles.containerPosition,
                   {
-                    backgroundColor: poor === 1 ? '#F5F6F7' : '#fff',
+                    backgroundColor: !poorTransportation ? '#F5F6F7' : '#fff',
                   },
                 ]}>
-                <Text style={{textAlign: 'center', color: 'black'}}>
-                  아니요
-                </Text>
+                <Text style={styles.labelDropdown}>아니요</Text>
               </TouchableOpacity>
             </View>
           )}
@@ -321,6 +306,20 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     color: '#A3A5AE',
   },
+  labelValueBus: {
+    width: windowWidth / 2,
+    fontSize: 14,
+    fontWeight: '400',
+    lineHeight: 18,
+    color: '#090A0B',
+  },
+  labelPlaceBus: {
+    width: windowWidth / 2,
+    fontSize: 14,
+    fontWeight: '400',
+    lineHeight: 18,
+    color: '#A3A5AE',
+  },
   labelValue: {
     fontSize: 14,
     fontWeight: '400',
@@ -405,8 +404,16 @@ const styles = StyleSheet.create({
     right: 24,
     borderRadius: 10,
     zIndex: 10,
-    borderWidth: 1,
+    borderWidth: 0.5,
+    borderColor: '#E1E2E5',
     overflow: 'hidden',
+  },
+  labelDropdown: {
+    textAlign: 'center',
+    color: 'black',
+    fontSize: 12,
+    fontWeight: '400',
+    lineHeight: 18,
   },
 });
 

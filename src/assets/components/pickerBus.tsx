@@ -21,8 +21,8 @@ const PickerBus = (callback: (value: string) => void) => {
         textSize={20}
         selectTextColor="#090A0B"
         style={styles.pickerTime}
-        selectedValue={data[0]}
-        selectBackgroundColor="rgba(36,139,176,0.08)"
+        selectedValue={data[5]}
+        selectBackgroundColor="rgba(241,242,243,0.2)"
         itemStyle={styles.itemStyle}
         selectLineColor={'#CACACA'}
         selectLineSize={2}
@@ -52,8 +52,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   itemStyle: {
-    fontSize: 19.5,
-    fontWeight: '500',
+    overflow: 'hidden',
+    fontSize: 20,
+    fontWeight: '400',
     color: '#F1F2F3',
     lineHeight: 28,
   },
