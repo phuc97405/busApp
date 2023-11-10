@@ -72,9 +72,22 @@ const HomeScreen = ({navigation}: PublicStackScreenProps<'home'>) => {
     </>
   );
 
+  const onSubmitStation = (stationName: string) => {
+    console.log('stationName', stationName);
+    setStationName(stationName);
+  };
+
   const stationView = () => (
     <>
-      <Text style={styles.labelPlaceholder}>
+      <Text
+        style={[
+          styles.labelPlaceholder,
+          stationName
+            ? {
+                color: 'black',
+              }
+            : {},
+        ]}>
         {stationName ? stationName : '선택'}
       </Text>
       <Image
@@ -134,6 +147,7 @@ const HomeScreen = ({navigation}: PublicStackScreenProps<'home'>) => {
   ];
   const changeNameBus = (name: string) => {
     setBusName(name);
+    setStationName('');
   };
 
   return (
@@ -168,7 +182,11 @@ const HomeScreen = ({navigation}: PublicStackScreenProps<'home'>) => {
                 onPress={() => {
                   setIndexCheck(index);
                   index === 2 &&
-                    navigation.navigate('stationScreen', {busName});
+                    navigation.navigate('stationScreen', {
+                      busInfo: busName,
+                      stationName,
+                      onSubmitStation: onSubmitStation,
+                    });
                 }}
                 style={[
                   indexCheck === index
