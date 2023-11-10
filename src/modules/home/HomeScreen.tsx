@@ -208,6 +208,7 @@ const HomeScreen = ({navigation}: PublicStackScreenProps<'home'>) => {
                 ]}>
                 <Text style={styles.labelDropdown}>예</Text>
               </TouchableOpacity>
+              <View style={styles.verticalLine} />
               <TouchableOpacity
                 onPress={() => {
                   setPoorTransportation(false);
@@ -421,6 +422,15 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     borderColor: '#E1E2E5',
     overflow: 'hidden',
+
+    shadowColor: '#A3A5AE',
+    shadowRadius: 10,
+    shadowOpacity: 0.6,
+    elevation: 8,
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
   },
   labelDropdown: {
     textAlign: 'center',
