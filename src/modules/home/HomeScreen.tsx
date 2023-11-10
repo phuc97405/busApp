@@ -162,9 +162,10 @@ const HomeScreen = ({navigation}: PublicStackScreenProps<'home'>) => {
 
         <View style={styles.listOptions}>
           {data.map((item: Option, index: number) => (
-            <TouchableOpacity key={index} style={styles.containerItem}>
+            <View key={index} style={styles.containerItem}>
               <Text style={styles.labelOptions}>{item.title}</Text>
               <Pressable
+                disabled={index === 2 && !busName}
                 onPress={() => {
                   setIndexCheck(index);
                   index === 2 &&
@@ -178,7 +179,7 @@ const HomeScreen = ({navigation}: PublicStackScreenProps<'home'>) => {
                 ]}>
                 {item.type}
               </Pressable>
-            </TouchableOpacity>
+            </View>
           ))}
           {indexCheck === 3 && (
             <View style={styles.rootPosition}>
