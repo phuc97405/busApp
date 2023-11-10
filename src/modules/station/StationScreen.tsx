@@ -168,7 +168,7 @@ const StationScreen = ({
                       backgroundColor:
                         currentStation === undefined || currentStation > index
                           ? '#E1E2E5'
-                          : '#FFBB6C',
+                          : '#AFDF7B',
                       height: ITEM_HEIGHT,
                       width: LINE_WIDTH,
                       marginTop: ITEM_HEIGHT / 2,
