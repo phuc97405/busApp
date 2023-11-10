@@ -385,6 +385,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5F6F7',
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: -16,
   },
   containerBus: {
     backgroundColor: 'rgba(0,0,0,0.5)',
