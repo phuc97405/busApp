@@ -13,6 +13,7 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import icons from '../../assets/icons';
 
 const datas = Array.from({length: 20}, (_, i) => ({
+  id: i.toString(),
   name: 'Bus station ' + i,
   number: Math.round(Math.random() * 1000000),
   time: '05:47-22:' + i,
@@ -28,8 +29,13 @@ const StationScreen = ({
   navigation,
   route,
 }: PublicStackScreenProps<'stationScreen'>) => {
-  const {text} = route?.params || {text: ''};
-  const [currentStation, setCurrentStation] = useState(undefined);
+  const {busInfo, onSubmitStation} = route?.params || {
+    busInfo: '',
+    onSubmitStation: () => {},
+  };
+  const [currentStation, setCurrentStation] = useState<number | undefined>(
+    undefined,
+  );
 
   const ActiveCheckbox = useCallback(() => {
     return (
@@ -93,6 +99,12 @@ const StationScreen = ({
   const isDisableButton = currentStation !== undefined ? false : true;
 
   const onConfirmStation = () => {
+    // send data to home screen
+    if (currentStation !== undefined) {
+      onSubmitStation?.(datas[currentStation].name);
+    }
+
+    // go back
     navigation.goBack();
   };
   const onPressBack = () => {
@@ -103,18 +115,7 @@ const StationScreen = ({
   const insets = useSafeAreaInsets();
 
   return (
-    // <Container>
     <View style={[styles.container, {marginTop: insets.top || 6}]}>
-      {/* <Header
-        title=""
-        leftIcon={icons.ic_bus}
-        leftIconStyle={{
-          width: 30,
-          height: 40,
-        }}
-        rightIcon={icons.ic_menu}
-        onPressRight={() => {}}
-      /> */}
       <View style={styles.header}>
         <Image
           source={icons.ic_bus}
@@ -134,7 +135,7 @@ const StationScreen = ({
           </TouchableOpacity>
 
           <Text style={styles.text_bus_route}>
-            {text || '37 (내임선 - 황전면행정복지센터)'}
+            {busInfo || '37 (내임선 - 황전면행정복지센터)'}
           </Text>
         </View>
 
@@ -148,7 +149,7 @@ const StationScreen = ({
           {datas.map((item, index) => (
             <TouchableOpacity
               activeOpacity={0.8}
-              key={index}
+              key={item.id}
               onPress={() => setCurrentStation(index)}>
               <View
                 style={{
@@ -158,7 +159,7 @@ const StationScreen = ({
                   <View
                     style={{
                       backgroundColor:
-                        currentStation > index || currentStation === undefined
+                        currentStation === undefined || currentStation > index
                           ? '#E1E2E5'
                           : '#FFBB6C',
                       height: ITEM_HEIGHT,

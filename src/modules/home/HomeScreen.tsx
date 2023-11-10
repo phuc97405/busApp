@@ -81,11 +81,19 @@ const HomeScreen = ({navigation}: PublicStackScreenProps<'home'>) => {
     </Pressable>
   );
 
+  const onSubmitStation = (stationName: string) => {};
+
   const stationView = () => (
     <Pressable
       onPress={() => {
         setIndexCheck(2);
-        navigation.navigate('stationScreen');
+        // navigation.setOptions({
+
+        // })
+        navigation.navigate('stationScreen', {
+          busInfo: busName,
+          onSubmitStation: onSubmitStation,
+        });
       }}
       style={
         indexCheck === 2 ? styles.containerFormEditAc : styles.containerFormEdit

@@ -13,7 +13,10 @@ export type PublicStackParamList = {
   splash: undefined;
   splash_next: undefined;
   home: undefined;
-  stationScreen: undefined;
+  stationScreen: {
+    busInfo: string;
+    onSubmitStation: (stationName: string) => void;
+  };
 };
 
 export type PublicStackScreenProps<T extends keyof PublicStackParamList> =
