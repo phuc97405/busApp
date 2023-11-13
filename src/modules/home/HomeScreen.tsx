@@ -59,7 +59,10 @@ const HomeScreen = ({navigation}: PublicStackScreenProps<'home'>) => {
   const busView = () => (
     <>
       <Text
-        style={busName ? styles.labelValueBus : styles.labelPlaceBus}
+        style={[
+          busName ? styles.labelValueBus : styles.labelPlaceBus,
+          {width: windowWidth / 2},
+        ]}
         numberOfLines={1}
         ellipsizeMode="tail">
         {`${busName ? busName : '버스 노선 번호를 선택해 주세요.'} `}
@@ -78,7 +81,10 @@ const HomeScreen = ({navigation}: PublicStackScreenProps<'home'>) => {
 
   const stationView = () => (
     <>
-      <Text style={[stationName ? styles.labelValueBus : styles.labelPlaceBus]}>
+      <Text
+        numberOfLines={1}
+        ellipsizeMode="tail"
+        style={[stationName ? styles.labelValueBus : styles.labelPlaceBus]}>
         {stationName ? stationName : '선택'}
       </Text>
       <Image
