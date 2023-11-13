@@ -1,7 +1,7 @@
-import React, {memo, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {PublicStackScreenProps} from '../../navigation/types';
+import {PublicStackScreenProps} from '~navigation/types';
 
 const SplashScreen = ({navigation}: PublicStackScreenProps<'splash'>) => {
   const inset = useSafeAreaInsets();

@@ -8,9 +8,9 @@ import {
   View,
 } from 'react-native';
 
-import {PublicStackScreenProps} from '../../navigation/types';
+import icons from '~assets/icons';
+import {PublicStackScreenProps} from '~navigation/types';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import icons from '../../assets/icons';
 
 const datas = Array.from({length: 20}, (_, i) => ({
   id: i.toString(),

@@ -12,12 +12,12 @@ import {
 } from 'react-native-safe-area-context';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {StatusBar, StyleSheet} from 'react-native';
-import SplashScreen from './src/modules/splash/SplashScreen';
 import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
-import {PublicStack} from './src/navigation/types';
-import HomeScreen from './src/modules/home/HomeScreen';
-import SplashScreenNext from './src/modules/splash/SplashScreenNext';
-import StationScreen from './src/modules/station/StationScreen';
+import {PublicStack} from '~navigation/types';
+import SplashScreen from '~modules/splash/SplashScreen';
+import SplashScreenNext from '~modules/splash/SplashScreenNext';
+import StationScreen from '~modules/station/StationScreen';
+import HomeScreen from '~modules/home/HomeScreen';
 
 const navTheme = {
   ...DefaultTheme,

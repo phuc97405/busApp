@@ -1,8 +1,7 @@
-import React, {memo, useEffect} from 'react';
+import icons from '~assets/icons';
+import React, {useEffect} from 'react';
+import {PublicStackScreenProps} from '~navigation/types';
 import {Image, StyleSheet, Text, View} from 'react-native';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {PublicStackScreenProps} from '../../navigation/types';
-import icons from '../../assets/icons';
 
 const SplashScreenNext = ({
   navigation,

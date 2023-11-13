@@ -8,10 +8,10 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import icons from '../../assets/icons';
-import PickerBus from '../../assets/components/pickerBus';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {PublicStackScreenProps} from '../../navigation/types';
+import PickerBus from '~assets/components/pickerBus';
+import icons from '~assets/icons';
+import {PublicStackScreenProps} from '~navigation/types';
 
 interface Option {
   title: string;
